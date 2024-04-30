@@ -169,3 +169,174 @@ section h1::after {
 .btn1:hover {
   color: #000000;
 }
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+:root {
+  --yellow: rgb(35, 109, 89);
+  --green: rgb(35, 109, 89);
+  --light-green: rgb(4, 167, 137);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+/* Remove default left padding from Bootstrap ul */
+body ul {
+  padding-left: 0;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+section h1 {
+  text-align: center;
+  color: #000000;
+  margin: 10px 0;
+  position: relative;
+  font-size: 30px;
+}
+
+section h1::after {
+  content: "";
+  position: absolute;
+  width: 10%;
+  height: 2px;
+  background-image: linear-gradient(to left, transparent 5%, var(--green));
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.header {
+  min-height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.486);
+  background-blend-mode: overlay;
+  overflow: hidden;
+}
+
+.video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.bottom-img {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+/*-------------COUNTER-----------*/
+.count {
+  background: transparent;
+}
+
+.count .box-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 30px;
+}
+
+.count .box-container .box {
+  flex-basis: 32%;
+  padding: 20px;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.count .box-container .box i {
+  font-size: 30px;
+  color: var(--green);
+}
+
+.count span {
+  color: var(--green);
+}
+
+.count .box-container .box h3 {
+  font-size: 30px;
+}
+.count .box-container .box p {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+@media (max-width: 800px) {
+  .count .box-container {
+    flex-direction: column;
+    align-items: top;
+    margin-top: -50px;
+    margin-bottom: 50px;
+  }
+
+  .count .box-container .box {
+    padding: 20px;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .count .box-container .box {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1012px) {
+  .count .box-container {
+    margin-bottom: 100px;
+  }
+}
+
+.btn1 {
+  display: inline-block !important;
+  text-decoration: none !important;
+  color: white !important;
+  border: 1px solid white !important;
+  background: none !important;
+  padding: 12px 34px !important;
+  font-size: 13px !important;
+  background: transparent !important;
+  position: relative !important;
+  cursor: pointer !important;
+  z-index: 0 !important;
+  border-radius: 0 !important;
+}
+
+.btn1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  clip-path: circle(0% at 0% 0%);
+  transition: 0.5s;
+  background: var(--green);
+  z-index: -1;
+}
+
+.btn1:hover::before {
+  clip-path: circle(100%);
+}
+
+.btn1:hover {
+  color: #000000;
+}
