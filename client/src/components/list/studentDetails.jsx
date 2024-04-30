@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   getHomeworkById,
@@ -77,6 +77,8 @@ const StudentDetails = () => {
   };
 
   const validateForm = () => {
+    // You will need to implement validation for attendance if required
+    // For now, only homework validation is implemented
     let errors = {};
     let formIsValid = true;
     const fields = state.homework;
@@ -147,9 +149,9 @@ const StudentDetails = () => {
       navigate("/sidebar/students");
     } catch (error) {
       console.error("Save failed:", error);
-      // alert(Error during save: ${error.message});
+      alert(`Error during save: ${error.message}`);
 
-      return;
+      return; // Exit if homework update fails
     }
 
     // Update Attendance
@@ -158,7 +160,7 @@ const StudentDetails = () => {
       alert("Attendance updated successfully!");
     } catch (error) {
       console.error("Save failed:", error);
-      // alert(Error during save: ${error.message});
+      alert(`Error during save: ${error.message}`);
     }
   };
 
