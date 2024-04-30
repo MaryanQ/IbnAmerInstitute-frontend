@@ -49,12 +49,6 @@ export interface Class {
   duration: string;
 }
 
-export interface StudentClass {
-  student_id: number;
-  class_id: number;
-}
-
-// Attendance interface
 interface Attendance {
   attendance_id: number;
   student_id: number;
@@ -71,16 +65,6 @@ interface Homework {
   assignment_name: string;
   description: string;
   due_date: Date;
-}
-
-// QuranProgress interface
-interface QuranProgress {
-  progress_id: number;
-  student_id: number;
-  chapter_number: number;
-  is_completed: boolean;
-  completion_date: Date;
-  grade: string;
 }
 
 export const createLogin = async (loginData) => {
@@ -118,7 +102,6 @@ export const createLogin = async (loginData) => {
   }
 };
 
-//students
 export const getStudent = async () => {
   try {
     const response = await fetch(STUDENTS_URL);
@@ -183,13 +166,12 @@ export const createStudent = async (studentData) => {
     return await response.json();
   } catch (error) {
     console.error("Error creating student:", error);
-    throw error; // Throw the error to be caught by the calling function
+    throw error;
   }
 };
 
 export const updateStudent = async (id: number, updatedStudent: Student) => {
   try {
-    // Check if id is defined before sending the request
     if (!id) {
       throw new Error("No student ID provided");
     }
@@ -213,7 +195,6 @@ export const updateStudent = async (id: number, updatedStudent: Student) => {
 
 export const deleteStudent = async (id: number) => {
   try {
-    // Check if id is defined before sending the request
     if (!id) {
       throw new Error("No student ID provided");
     }
@@ -292,12 +273,6 @@ export const createCourse = async (courseData) => {
 
 // In ApiService.tsx
 
-/**
- * Update a course by its ID.
- * @param {string} id - The ID of the course to update.
- * @param {Object} courseData - New data for the course.
- * @returns {Promise<Object>} The updated course data.
- */
 export const updateCourse = async (
   id: number,
   courseData: any
@@ -356,8 +331,6 @@ export const getClasses = async () => {
   }
 };
 
-// In ApiService.js
-
 export const getClassById = async (id) => {
   if (id === undefined) {
     console.error("Error: Missing 'classId' for getClassById");
@@ -386,9 +359,8 @@ export const createClass = async (classData) => {
       },
       body: JSON.stringify(classData),
     });
-    const responseData = await response.json(); // Parse JSON response regardless of the response status
+    const responseData = await response.json();
     if (!response.ok) {
-      // Log and throw detailed error information from the server
       console.error("Failed to create class:", responseData);
       throw new Error(
         `Failed to create class: ${responseData.error || "Unknown error"}`
@@ -397,7 +369,7 @@ export const createClass = async (classData) => {
     return responseData;
   } catch (error) {
     console.error("Error creating class:", error.message);
-    throw error; // Consider handling this thrown error if not already being handled
+    throw error;
   }
 };
 
@@ -420,7 +392,6 @@ export const updateClass = async (classId, classData) => {
   }
 };
 
-// DELETE Class
 export const deleteClass = async (classId) => {
   try {
     const response = await fetch(`${CLASSES_URL}/${classId}`, {
@@ -436,7 +407,6 @@ export const deleteClass = async (classId) => {
   }
 };
 
-//teachers
 export const getTeachers = async () => {
   try {
     const response = await fetch(TEACHERS_URL);
@@ -518,7 +488,6 @@ export const deleteTeacher = async (teacherId) => {
   }
 };
 
-// Exported functions for Attendance
 export const getAttendance = async (): Promise<Attendance[]> => {
   try {
     const response = await fetch(ATTENDANCE_URL);
@@ -530,7 +499,7 @@ export const getAttendance = async (): Promise<Attendance[]> => {
     return await response.json();
   } catch (error) {
     console.error("Error fetching attendance data:", error);
-    throw error; // Throw the error to be caught by the calling function
+    throw error;
   }
 };
 
@@ -547,7 +516,7 @@ export const getAttendanceById = async (id: number): Promise<Attendance> => {
     return await response.json();
   } catch (error) {
     console.error("Error fetching attendance by ID:", error);
-    throw error; // Throw the error to be caught by the calling function
+    throw error;
   }
 };
 
@@ -568,7 +537,7 @@ export const createAttendance = async (attendanceData: Attendance) => {
     return await response.json();
   } catch (error) {
     console.error("Error creating attendance:", error);
-    throw error; // Throw the error to be caught by the calling function
+    throw error;
   }
 };
 
@@ -592,7 +561,7 @@ export const updateAttendance = async (
     return await response.json();
   } catch (error) {
     console.error("Error updating attendance:", error);
-    throw error; // Throw the error to be caught by the calling function
+    throw error;
   }
 };
 
@@ -613,7 +582,7 @@ export async function getHomework(): Promise<Homework[]> {
     return await response.json();
   } catch (error) {
     console.error("Error fetching homework:", error);
-    throw error; // Rethrow the error to handle it in the calling component
+    throw error;
   }
 }
 
@@ -630,7 +599,7 @@ export async function getHomeworkById(id: number): Promise<Homework> {
     return await response.json();
   } catch (error) {
     console.error(`Error fetching homework with ID ${id}:`, error);
-    throw error; // Rethrow the error to handle it in the calling component
+    throw error;
   }
 }
 
@@ -651,7 +620,7 @@ export async function createHomework(data: Homework): Promise<Homework> {
     return await response.json();
   } catch (error) {
     console.error("Error creating homework:", error);
-    throw error; // Rethrow the error to handle it in the calling component
+    throw error;
   }
 }
 
@@ -675,7 +644,7 @@ export async function updateHomework(
     return await response.json();
   } catch (error) {
     console.error("Error updating homework:", error);
-    throw error; // Rethrow the error to be caught by the calling function
+    throw error;
   }
 }
 
@@ -691,91 +660,6 @@ export async function deleteHomework(id: number): Promise<void> {
     }
   } catch (error) {
     console.error("Error deleting homework:", error);
-    throw error; // Rethrow the error to handle it in the calling function
-  }
-}
-
-// ApiService.js
-
-export async function getQuranProgressById(id) {
-  try {
-    const response = await fetch(`${QURAN_PROGRESS_URL}/${id}`);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch Quran progress for student ${id}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error; // Rethrow the error to be handled in the component
-  }
-}
-
-export async function createQuranProgress(
-  data: QuranProgress
-): Promise<QuranProgress> {
-  try {
-    const response = await fetch(QURAN_PROGRESS_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      const errorResponse = await response.json();
-      console.error("Create Quran progress error response:", errorResponse);
-      throw new Error(
-        errorResponse.message || "Failed to create Quran progress"
-      );
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error creating Quran progress:", error);
-    throw error; // Rethrow the error to handle it in the calling component
-  }
-}
-
-export async function updateQuranProgress(
-  id: number,
-  data: QuranProgress
-): Promise<QuranProgress> {
-  try {
-    const response = await fetch(`${QURAN_PROGRESS_URL}/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      const errorResponse = await response.json();
-      console.error("Update Quran progress error response:", errorResponse);
-      throw new Error(
-        errorResponse.message || "Failed to update Quran progress"
-      );
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error updating Quran progress:", error);
-    throw error; // Rethrow the error to handle it in the calling component
-  }
-}
-
-export async function deleteQuranProgress(id: number): Promise<void> {
-  try {
-    const response = await fetch(`${QURAN_PROGRESS_URL}/${id}`, {
-      method: "DELETE",
-    });
-    if (!response.ok) {
-      const errorResponse = await response.json();
-      console.error("Delete Quran progress error response:", errorResponse);
-      throw new Error(
-        errorResponse.message || "Failed to delete Quran progress"
-      );
-    }
-  } catch (error) {
-    console.error("Error deleting Quran progress:", error);
-    throw error; // Rethrow the error to handle it in the calling component
+    throw error;
   }
 }

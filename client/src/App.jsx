@@ -10,7 +10,7 @@ import Tajweed from "./components/views/courses/Tajweed";
 import Teachers from "./components/views/teacher/Teachers";
 import Sidebar from "./dashboard/sidebar";
 import StudentList from "./components/list/studentList";
-//import QuranLessonCalendar from "./dashboard/calender";
+
 import AddStudent from "./forms/addStudent";
 import EditStudent from "./forms/editStudent";
 import CoursesWithClasses from "./components/list/courseList";

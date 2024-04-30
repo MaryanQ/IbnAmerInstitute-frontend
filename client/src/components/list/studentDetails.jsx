@@ -77,8 +77,6 @@ const StudentDetails = () => {
   };
 
   const validateForm = () => {
-    // You will need to implement validation for attendance if required
-    // For now, only homework validation is implemented
     let errors = {};
     let formIsValid = true;
     const fields = state.homework;
@@ -142,7 +140,6 @@ const StudentDetails = () => {
       is_present: state.attendance.isPresent ? 1 : 0,
     };
 
-    // Update Homework
     try {
       await updateHomework(studentId, homeworkPayload);
       alert("Homework updated successfully!");
@@ -151,10 +148,9 @@ const StudentDetails = () => {
       console.error("Save failed:", error);
       alert(`Error during save: ${error.message}`);
 
-      return; // Exit if homework update fails
+      return;
     }
 
-    // Update Attendance
     try {
       await updateAttendance(studentId, attendancePayload);
       alert("Attendance updated successfully!");
@@ -175,7 +171,6 @@ const StudentDetails = () => {
 
       <h1 style={{ textAlign: "center" }}>Student Details</h1>
       <form onSubmit={handleSave}>
-        {/* Attendance fields */}
         <label>Attendance Date:</label>
         <input
           type="date"
@@ -190,8 +185,8 @@ const StudentDetails = () => {
           checked={state.attendance.isPresent}
           onChange={handleChange}
         />
-        <br /> {/* Line break */}
-        <br /> {/* Line break */}
+        <br />
+        <br />
         <label>Assignment Name:</label>
         <input
           type="text"
@@ -225,15 +220,15 @@ const StudentDetails = () => {
           checked={state.homework.isCompleted}
           onChange={handleChange}
         />
-        <br /> {/* Line break */}
-        <br /> {/* Line break */}
+        <br />
+        <br />
         <label>Completion Date:</label>
         <input
           type="date"
           name="completionDate"
           value={state.homework.completionDate}
           onChange={handleChange}
-          disabled={!state.homework.isCompleted} // Disable if not completed
+          disabled={!state.homework.isCompleted}
         />
         <label>Grade:</label>
         <select
